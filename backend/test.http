@@ -1,0 +1,73 @@
+### 1. Testar cadastro de cpf errado
+POST http://localhost:3000/cliente
+Content-Type: application/json
+
+{
+    "nome": "Roberto",
+    "email": "roberto@gmail.com",
+    "senha": "abc",
+    "cpf": "123456789",
+    "celular": "47912345678"
+}
+
+### 2. Testar cadastro do cliente
+POST http://localhost:3000/cliente
+Content-Type: application/json
+
+{
+    "nome": "Roberto",
+    "email": "roberto@gmail.com",
+    "senha": "abc",
+    "cpf": "12345678912",
+    "celular": "47912345678"
+}
+
+### 3. Testar cadastro do cliente
+POST http://localhost:3000/cliente
+Content-Type: application/json
+
+{
+    "nome": "Marcos",
+    "email": "marcos@gmail.com",
+    "senha": "abc",
+    "cpf": "12345678912",
+    "celular": "47912345678"
+}
+
+### 4. Testar cadastro do cliente
+POST http://localhost:3000/cliente
+Content-Type: application/json
+
+{
+    "nome": "Ana",
+    "email": "ana@gmail.com",
+    "senha": "abc",
+    "cpf": "12345678912",
+    "celular": "47912345678"
+}
+
+### 5. Fazer Login do cliente (Armazena o token automaticamente)
+# @name loginReq
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "email": "ana@gmail.com",
+    "senha": "abc"
+}
+
+### 6. Consultar cliente por ID (rota privada)
+GET http://localhost:3000/cliente/1
+Authorization: {{{{loginReq.response.body.token}}}}
+
+### 7. Consultar cliente por nome (rota privada)
+GET http://localhost:3000/cliente/buscarNome/Ana
+Authorization: {{loginReq.response.body.token}}
+
+### 8. Listar cliente (rota privada)
+GET http://localhost:3000/clientes
+Authorization: {{loginReq.response.body.token}}
+
+### 8. Listar cliente (rota privada)
+DELETE http://localhost:3000/cliente/3
+Authorization: {{loginReq.response.body.token}}
